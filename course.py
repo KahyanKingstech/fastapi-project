@@ -1,17 +1,7 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import APIRouter
 
-# Create FastAPI app instance
-app = FastAPI()
-
-# Add CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins (you can restrict this to specific domains if needed)
-    allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
-)
+# Create an APIRouter instance
+router = APIRouter()
 
 # Dummy data for courses
 courses = [
@@ -22,7 +12,7 @@ courses = [
     {"course_id": "CRS1094", "course_name": "Machine Learning Basics", "description": "Understand the basics of machine learning algorithms."}
 ]
 
-# Define the GET endpoint for courses
-@app.get("/courses")
+# Define the GET endpoint for courses using the router
+@router.get("/courses")
 def get_courses():
     return courses
